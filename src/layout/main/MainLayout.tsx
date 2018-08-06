@@ -1,12 +1,12 @@
 import * as React from 'react';
+import "./MainLayout.less"
+import Nav from '../../containers/Nav';
 
 class MainLayout extends React.Component {
   public render() {
     return (
       <div className="MainLayout">
-        <div className="row">
-          nav bar
-        </div>
+        <Nav />
         {this.props.children}
       </div>
     );

@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import AntdProvider from './locales/AntdProvider';
 import IntlProvider from './locales/IntlProvider';
 import registerServiceWorker from './registerServiceWorker';
-import routes from './routes/'
+import getRoutes from './routes/'
 import {history, store} from './store/'
 
 import './index.less';
@@ -14,7 +14,6 @@ import './index.less';
 import * as ar from 'react-intl/locale-data/ar';
 import * as en from 'react-intl/locale-data/en';
 import * as fr from 'react-intl/locale-data/fr';
-
 
 addLocaleData([...en, ...ar, ...fr]);
 
@@ -24,7 +23,7 @@ ReactDOM.render(
       <IntlProvider>
         <div>
           <ConnectedRouter history={history}>
-            {routes}
+            {getRoutes(store)}
           </ConnectedRouter>
         </div>
       </IntlProvider>

@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import './Hello.less';
 
 export interface IProps {

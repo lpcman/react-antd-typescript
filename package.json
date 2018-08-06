@@ -4,17 +4,21 @@
   "private": true,
   "dependencies": {
     "antd": "^3.8.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-scripts-ts": "2.17.0",
+    "bcryptjs": "^2.4.3",
+    "btoa": "^1.2.1",
     "connected-react-router": "^4.3.0",
     "history": "^4.7.2",
+    "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "react-intl": "^2.4.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-scripts-ts": "2.17.0",
     "redux": "^4.0.0",
-    "normalize.css": "^8.0.0"
+    "redux-saga": "^0.16.0"
   },
   "scripts": {
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
@@ -24,6 +28,7 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.1",
     "@types/enzyme": "^3.1.12",
     "@types/enzyme-adapter-react-16": "^1.0.2",
     "@types/jest": "^23.3.1",
@@ -43,6 +48,7 @@
     "redux-logger": "^3.0.6",
     "stylelint": "^9.4.0",
     "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^0.8.1",
     "ts-import-plugin": "^1.5.4",
     "typescript": "^3.0.1"
   }
