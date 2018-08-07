@@ -1,10 +1,3 @@
-export const DEFAULT_LOCALE = 'en';
-export const LOCALES_LANGS = {
-  'ar': 'العربية',
-  'en': 'English',
-  'fr': 'Français',
-};
-
 export const flattenMessages = (nestedMessages: object, prefix = '') =>
   Object
     .keys(nestedMessages)

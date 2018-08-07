@@ -16,7 +16,7 @@ export default {
   },
   app: {
     content: {
-      message: 'welcome!'
+      message: '欢迎!'
     }
   }
 }

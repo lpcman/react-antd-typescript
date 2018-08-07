@@ -9,12 +9,12 @@ import {
 } from 'react-intl';
 import {connect} from 'react-redux';
 import {Dispatch} from "redux";
-import * as actions from '../../actions/localesAction';
-import {LOCALES_LANGS} from '../../locales/utils';
+import * as actions from '../actions/localesAction';
+import {LOCALES_LANGS} from '../locales/messages';
 
 import { DatePicker, Pagination } from 'antd';
 
-import {ILocaleStore} from "../../store/localeStore";
+import {ILocaleStore} from "../store/localeStore";
 
 export interface IProps {
   locale: string;

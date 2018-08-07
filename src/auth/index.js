@@ -1,13 +1,14 @@
-import request from './fakeRequest'
+import request from './fakeRequest';
+import * as authIo from '../api/auth';
 
-let localStorage
+let localStorage;
 
 // If we're testing, use a local storage polyfill
 // if (global.process && process.env.NODE_ENV === 'test') {
 //   localStorage = require('localStorage')
 // } else {
-  // If not, use the browser one
-  localStorage = global.window.localStorage
+// If not, use the browser one
+localStorage = global.window.localStorage;
 // }
 
 const auth = {
@@ -16,29 +17,35 @@ const auth = {
    * @param  {string} username The username of the user
    * @param  {string} password The password of the user
    */
-  login (username, password) {
+  login(username, password) {
     if (auth.loggedIn()) {
       return Promise.resolve(true)
     }
 
-    // Post a fake request
-    return request.post('/login', {username, password})
-      .then(response => {
-        // Save token to local storage
-        localStorage.token = response.token
-        return Promise.resolve(true)
-      })
+    // // Post a fake request
+    // return request.post('/login', {username, password})
+    //   .then(response => {
+    //     // Save token to local storage
+    //     localStorage.token = response.token
+    //     return Promise.resolve(true)
+    //   })
+
+    return authIo.login({username, password}).then(response => {
+      // Save token to local storage
+      localStorage.token = response.token;
+      return Promise.resolve(true)
+    });
   },
   /**
    * Logs the current user out
    */
-  logout () {
+  logout() {
     return request.post('/logout')
   },
   /**
    * Checks if a user is logged in
    */
-  loggedIn () {
+  loggedIn() {
     return !!localStorage.token
   },
   /**
@@ -46,15 +53,15 @@ const auth = {
    * @param  {string} username The username of the user
    * @param  {string} password The password of the user
    */
-  register (username, password) {
+  register(username, password) {
     // Post a fake request
-    return request.post('/register', {username, password})
-      // Log user in after registering
+    return request.post(REACT_APP_API_SERVER + '/register', {username, password})
+    // Log user in after registering
       .then(() => auth.login(username, password))
   },
-  onChange () {
+  onChange() {
     // no
   }
-}
+};
 
 export default auth

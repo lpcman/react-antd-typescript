@@ -13,5 +13,10 @@ export default {
       num: 'Exemple de nombre formaté comme {num}',
       price: 'ou prix comme {price}',
     }
+  },
+  app: {
+    content: {
+      message: 'Bienvenue!'
+    }
   }
 }

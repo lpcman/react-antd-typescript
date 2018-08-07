@@ -1,5 +1,4 @@
-import messages from '../locales/messages';
-import antdMessage from '../locales/antd';
+import { messages, antMessages } from '../locales/messages';
 import { flattenMessages } from '../locales/utils';
 
 export const UPDATE_LOCALE = 'UPDATE_LOCALE';
@@ -20,7 +19,7 @@ export const updateLocales = (locale: string): IUpdateLocales => ({
   payload: {
     locale,
     messages: flattenMessages(messages[locale]),
-    antd: antdMessage[locale]
+    antd: antMessages[locale]
   },
   type: UPDATE_LOCALE
 });

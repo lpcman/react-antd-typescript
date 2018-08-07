@@ -1,7 +1,6 @@
 import {Locale} from "antd/lib/locale-provider";
-import {DEFAULT_LOCALE, flattenMessages} from "../locales/utils";
-import translation from "../locales/messages";
-import antdLocales from "../locales/antd";
+import {flattenMessages} from "../locales/utils";
+import {messages, antMessages, DEFAULT_LOCALE} from "../locales/messages";
 
 export interface ILocale {
   locale: string;
@@ -15,6 +14,6 @@ export interface ILocaleStore {
 
 export const storeLocale: ILocale = {
   locale: DEFAULT_LOCALE,
-  messages: flattenMessages(translation[DEFAULT_LOCALE]),
-  antd: antdLocales[DEFAULT_LOCALE]
+  messages: flattenMessages(messages[DEFAULT_LOCALE]),
+  antd: antMessages[DEFAULT_LOCALE]
 };

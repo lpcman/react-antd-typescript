@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Login from '../containers/Login';
 import EmptyLayout from '../layout/empty/';
+import Login from '../containers/Login';
 
-const About = (props: any) => (
+const LoginPage = (props: any) => (
   <EmptyLayout>
-    <Login/>
+    <Login {...props} />
   </EmptyLayout>
 );
 
-export default About;
+export default LoginPage;

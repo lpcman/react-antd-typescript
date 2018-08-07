@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import './LoginForm.less';
-// import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../ErrorMessage';
 
 const FormItem = Form.Item;
 
@@ -14,38 +14,28 @@ export interface ILoginForm {
   error: string,
   btnText: string,
   changeForm: any,
-  onSubmit: any,
+  login: any,
   form: any
 }
 
 function LoginForm(props: ILoginForm) {
-
-  // let _emitChange = (newFormState: any) => {
-  //   props.changeForm(newFormState);
-  // };
-
-  // let _changeUsername = (event: any) => {
-  //   _emitChange({...props.data, username: event.target.value })
-  // };
-  //
-  // let _changePassword = (event: any) => {
-  //   _emitChange({...props.data, password: event.target.value })
-  // };
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
     props.form.validateFields((err: any, values: any) => {
       if (!err) {
         console.log('Received values of form: ', values); //tslint:disable-line
+        console.log('Received props: ', props); //tslint:disable-line
         props.changeForm(values);
+        props.login(values);
       }
     });
   };
   const { getFieldDecorator } = props.form;
   return (
     <Form onSubmit={handleSubmit} className="LoginForm">
+        {props.error ? <ErrorMessage error={props.error} /> : null}
         <FormItem>
-        {getFieldDecorator('userName', {
+        {getFieldDecorator('username', {
         rules: [{ required: true, message: 'Please input your username!' }],
       })(
         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />

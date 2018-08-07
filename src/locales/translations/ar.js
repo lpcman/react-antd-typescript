@@ -13,5 +13,10 @@ export default {
       num: 'مثال على استخدام الارقام {num}',
       price: 'او العملات {price}',
     }
+  },
+  app: {
+    content: {
+      message: 'أهلا بك!'
+    }
   }
 }

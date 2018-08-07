@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.8.0",
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "btoa": "^1.2.1",
     "connected-react-router": "^4.3.0",
@@ -51,5 +52,14 @@
     "stylelint-order": "^0.8.1",
     "ts-import-plugin": "^1.5.4",
     "typescript": "^3.0.1"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://www.mocky.io/v2/",
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": true
+    }
   }
 }

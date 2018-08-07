@@ -9,8 +9,6 @@ const About = (props: any) => (
       about.
       <Hello />
       <Hello />
-      <Hello />
-      <Hello />
       <Button type="primary">有字的button</Button>
       <Link to="/">link to home</Link>
   </EmptyLayout>

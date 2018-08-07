@@ -3,12 +3,13 @@ import './Hello.less';
 
 export interface IProps {
     name: string;
+    username?: string,
     enthusiasmLevel?: number;
     onIncrement?: () => void;
     onDecrement?: () => void;
 }
 
-function Hello({ name, enthusiasmLevel = 1, onIncrement, onDecrement }: IProps) {
+function Hello({ name, enthusiasmLevel = 1, onIncrement, onDecrement, username }: IProps) {
     if (enthusiasmLevel <= 0) {
         throw new Error('You could be a little more enthusiastic. :D');
     }
@@ -16,7 +17,7 @@ function Hello({ name, enthusiasmLevel = 1, onIncrement, onDecrement }: IProps) 
     return (
         <div className="Hello">
             <div className="greeting">
-                Hello {name + getExclamationMarks(enthusiasmLevel)}
+                Hello {username} {name + getExclamationMarks(enthusiasmLevel)}
             </div>
             <div>
                 <button onClick={onDecrement}>-</button>

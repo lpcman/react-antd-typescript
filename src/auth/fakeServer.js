@@ -1,16 +1,16 @@
 import {hashSync, genSaltSync, compareSync} from 'bcryptjs'
 import genSalt from './salt'
 
-let users
-let localStorage
-const salt = genSaltSync(10)
+let users;
+let localStorage;
+const salt = genSaltSync(10);
 
 // If we're testing, use a local storage polyfill
 // if (global.process && process.env.NODE_ENV === 'test') {
 //   localStorage = require('localStorage')
 // } else {
   // If not, use the browser one
-  localStorage = global.window.localStorage
+  localStorage = global.window.localStorage;
 // }
 
 const server = {
@@ -20,15 +20,15 @@ const server = {
   init () {
     if (localStorage.users === undefined || !localStorage.encrypted) {
       // Set default user
-      const juan = 'juan'
-      const juanSalt = genSalt(juan)
-      const juanPass = hashSync('password', juanSalt)
+      const juan = 'juan';
+      const juanSalt = genSalt(juan);
+      const juanPass = hashSync('password', juanSalt);
 
       users = {
         [juan]: hashSync(juanPass, salt)
-      }
+      };
 
-      localStorage.users = JSON.stringify(users)
+      localStorage.users = JSON.stringify(users);
       localStorage.encrypted = true
     } else {
       users = JSON.parse(localStorage.users)
@@ -41,7 +41,7 @@ const server = {
   * @param  {string} password The password of the user
   */
   login (username, password) {
-    const userExists = this.doesUserExist(username)
+    const userExists = this.doesUserExist(username);
 
     return new Promise((resolve, reject) => {
       // If the user exists and the password fits log the user in and resolve
@@ -53,7 +53,7 @@ const server = {
         })
       } else {
         // Set the appropiate error and reject
-        let error
+        let error;
 
         if (userExists) {
           error = new Error('Wrong password')
@@ -75,8 +75,8 @@ const server = {
     return new Promise((resolve, reject) => {
       // If the username isn't used, hash the password with bcrypt to store it in localStorage
       if (!this.doesUserExist(username)) {
-        users[username] = hashSync(password, salt)
-        localStorage.users = JSON.stringify(users)
+        users[username] = hashSync(password, salt);
+        localStorage.users = JSON.stringify(users);
 
         // Resolve when done
         resolve({registered: true})
@@ -91,7 +91,7 @@ const server = {
   */
   logout () {
     return new Promise(resolve => {
-      localStorage.removeItem('token')
+      localStorage.removeItem('token');
       resolve(true)
     })
   },
@@ -102,8 +102,6 @@ const server = {
   doesUserExist (username) {
     return !(users[username] === undefined)
   }
-}
-
-server.init()
+};
 
 export default server
