@@ -2,16 +2,16 @@
 export default {
   home: {
     top: {
-      title: 'Hello in English!',
-      'locales-list': 'Change language: ',
-      'html-content': 'This is a sample text with <strong>HTML</strong> content.',
+      title: '您好 中文!',
+      'locales-list': '切换预言: ',
+      'html-content': '这是一个简单的 <strong>HTML</strong> 内容.',
     },
     bottom: {
-      today: 'Today is',
-      'pub-date': 'This example was developed',
-      'load-time': 'This page was visited',
-      num: 'Example of formatted number like {num}',
-      price: 'or price like {price}',
+      today: '今天是',
+      'pub-date': '这个Demo是在',
+      'load-time': '这个页面被访问',
+      num: '数字格式化示例 {num}',
+      price: '价格格式化示例 {price}',
     }
   },
   app: {

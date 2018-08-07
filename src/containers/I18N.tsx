@@ -10,11 +10,10 @@ import {
 import {connect} from 'react-redux';
 import {Dispatch} from "redux";
 import * as actions from '../actions/localesAction';
-import {LOCALES_LANGS} from '../locales/messages';
 
-import { DatePicker, Pagination } from 'antd';
-
+import {DatePicker, Pagination} from 'antd';
 import {ILocaleStore} from "../store/localeStore";
+import ChangeLocale from './ChangeLocaleCon';
 
 export interface IProps {
   locale: string;
@@ -38,14 +37,7 @@ const App = ({intl, locale, changeLocale}: IProps) => (
         <label htmlFor="localesList" className="col-sm-12 col-md-2 col-form-label">
           <FormattedMessage id="home.top.locales-list"/>
         </label>
-        <select
-          id="localesList"
-          className="form-control col-sm-12 col-md-2"
-          value={locale}
-          onChange={ e => changeLocale(e.target.value) }  // tslint:disable-line
-        >
-          {Object.keys(LOCALES_LANGS).map(lang => <option key={lang} value={lang}>{LOCALES_LANGS[lang]}</option>)}
-        </select>
+        <ChangeLocale/>
       </div>
       <h4>
         <FormattedHTMLMessage id="home.top.html-content"/>
@@ -91,8 +83,8 @@ const App = ({intl, locale, changeLocale}: IProps) => (
           }}
         />
       </h5>
-      <DatePicker />
-      <Pagination showQuickJumper={true} defaultCurrent={2} total={500} />
+      <DatePicker/>
+      <Pagination showQuickJumper={true} defaultCurrent={2} total={500}/>
     </div>
   </div>
 );
