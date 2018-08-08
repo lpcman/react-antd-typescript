@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux'
-import {enthusiasm} from './helloReducer';
-import {enthusiasm as e} from './hiReducer';
-import locales from './localesReducer';
-import auth from './auth';
+import * as helloReducer from './helloReducer';
+import * as hiReducer from './hiReducer';
+import * as localesReducer from './localesReducer';
+import * as authReducer from './authReducer';
 
-export default combineReducers({
-  hello: enthusiasm,
-  hi: e,
-  locales,
-  auth
+export const reducers =  combineReducers({
+  hello: helloReducer.helloReducer,
+  hi: hiReducer.hiReducer,
+  locales: localesReducer.default,
+  auth: authReducer.default
 });

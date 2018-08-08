@@ -1,5 +1,4 @@
 import auth from "../auth";
-
 export interface IAuth {
   formState: {
     username: string,

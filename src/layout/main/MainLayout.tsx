@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./MainLayout.less"
-import Nav from '../../containers/Nav';
+import Nav from '../../containers/NavCon';
 
 class MainLayout extends React.Component {
   public render() {

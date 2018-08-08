@@ -10,11 +10,9 @@ export interface IStoreState {
   auth: Auth.IAuth
 }
 
-const initialState: IStoreState = {
+export const initialState: IStoreState = {
   hello: Hello.storeHello,
-  hi: Hi.storeHi,
+  hi: Hi.initSateHi,
   locales: Locale.storeLocale,
   auth: Auth.storeAuth
 };
-
-export default initialState;

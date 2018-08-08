@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Login from '../components/Login';
-import * as actions from '../actions/authAction';
+import actions from '../actions/authAction';
 
 export function mapStateToProps(state: any, ownProps: any) {
   return {
@@ -13,7 +13,10 @@ export function mapDispatchToProps(dispatch: any) {
   return {
     clearError: () => dispatch(actions.clearError()),
     changeForm: (payload: any) => dispatch(actions.changeForm(payload)),
-    login: (payload: any)=> dispatch(actions.loginRequest(payload)),
+    login: (payload: any)=> {
+      console.log(payload); //tslint:disable-line
+      return dispatch(actions.loginRequest(payload))
+    },
     logout: () => dispatch(actions.logout())
   }
 }

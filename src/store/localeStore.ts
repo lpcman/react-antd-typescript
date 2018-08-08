@@ -1,6 +1,6 @@
 import {Locale} from "antd/lib/locale-provider";
+import {antMessages, DEFAULT_LOCALE, messages} from "../locales/messages";
 import {flattenMessages} from "../locales/utils";
-import {messages, antMessages, DEFAULT_LOCALE} from "../locales/messages";
 
 export interface ILocale {
   locale: string;

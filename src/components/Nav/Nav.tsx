@@ -19,7 +19,8 @@ function Nav(props: INav) {
           {
             props.loggedIn ? (
               <div>
-                <Link to='/dashboard'>Dashboard</Link>
+                <Link to='/'>Home</Link>
+                <Divider type="vertical" />
                 {props.currentlySending ? (
                   <Button type="primary" loading={props.currentlySending}>Loading</Button>
                 ) : (

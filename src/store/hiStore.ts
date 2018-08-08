@@ -7,7 +7,7 @@ export interface IHiStore {
   hi: IHi
 }
 
-export const storeHi: IHi = {
-    enthusiasmLevel: 2,
-    languageName: 'React',
+export const initSateHi: IHi = {
+  enthusiasmLevel: 2,
+  languageName: 'React',
 };

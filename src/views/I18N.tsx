@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
-import I18N from '../containers/I18N';
+import I18N from '../containers/I18NCon';
 import MainLayout from '../layout/main/';
 import { Button } from 'antd';
 

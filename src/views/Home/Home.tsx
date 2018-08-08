@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
-import Hi from '../../containers/Hi';
+import Hi from '../../containers/HiCon';
 import MainLayout from '../../layout/main/';
 import './Home.less';
 
@@ -8,8 +8,6 @@ const Home = () => (
   <MainLayout>
     <div className='Home'>
       Home test me
-      <Hi />
-      <Hi />
       <Hi />
       <Hi />
       <div className="navList">

@@ -3,12 +3,7 @@ import { push } from 'connected-react-router';
 import {hashSync} from 'bcryptjs';
 import genSalt from '../auth/salt';
 import auth from '../auth';
-import * as action from '../actions/authAction';
-import {
-  LOGIN_REQUEST,
-  REGISTER_REQUEST,
-  LOGOUT,
-} from '../constants/auth';
+import {LOGIN_REQUEST, LOGOUT, REGISTER_REQUEST, authActions} from '../actions/authAction';
 
 
 /**
@@ -20,7 +15,7 @@ import {
  */
 export function * authorize ({username, password, isRegistering}: any) {
   // We send an action that tells Redux we're sending a request
-  yield put(action.sendingRequest(true));
+  yield put(authActions.sendingRequest(true));
 
   // We then try to register or log in the user, depending on the request
   try {
@@ -41,12 +36,12 @@ export function * authorize ({username, password, isRegistering}: any) {
     return response
   } catch (error) {
     // If we get an error we send Redux the appropiate action and return
-    yield put(action.requestError(error.message));
+    yield put(authActions.requestError(error.message));
 
     return false
   } finally {
     // When done, we tell Redux we're not in the middle of a request any more
-    yield put(action.sendingRequest(false))
+    yield put(authActions.sendingRequest(false))
   }
 }
 
@@ -55,18 +50,18 @@ export function * authorize ({username, password, isRegistering}: any) {
  */
 export function * logout () {
   // We tell Redux we're in the middle of a request
-  yield put(action.sendingRequest(true));
+  yield put(authActions.sendingRequest(true));
 
   // Similar to above, we try to log out by calling the `logout` function in the
   // `auth` module. If we get an error, we send an appropiate action. If we don't,
   // we return the response.
   try {
     const response = yield call(auth.logout);
-    yield put(action.sendingRequest(false));
+    yield put(authActions.sendingRequest(false));
 
     return response
   } catch (error) {
-    yield put(action.requestError(error.message))
+    yield put(authActions.requestError(error.message))
   }
 }
 
@@ -79,8 +74,7 @@ export function * loginFlow () {
   while (true) {
     // And we're listening for `LOGIN_REQUEST` actions and destructuring its payload
     const request = yield take(LOGIN_REQUEST);
-    const {username, password} = request.data;
-
+    const {username, password} = request.payload;
     // A `LOGOUT` action may happen while the `authorize` effect is going on, which may
     // lead to a race condition. This is unlikely, but just in case, we call `race` which
     // returns the "winner", i.e. the one that finished first
@@ -92,13 +86,15 @@ export function * loginFlow () {
     // If `authorize` was the winner...
     if (winner.auth) {
       // ...we send Redux appropiate actions
-      yield put(action.setAuthState(true)); // User is logged in (authorized)
-      yield put(action.changeForm({username: '', password: ''})); // Clear form
+      yield put(authActions.setAuthState(true)); // User is logged in (authorized)
+      yield put(authActions.changeForm({username: '', password: ''})); // Clear form
       // forwardTo('/dashboard') // Go to dashboard page
       yield put(push('/'))
     }
   }
 }
+
+
 
 /**
  * Log out saga
@@ -108,7 +104,7 @@ export function * loginFlow () {
 export function * logoutFlow () {
   while (true) {
     yield take(LOGOUT);
-    yield put(action.setAuthState(false));
+    yield put(authActions.setAuthState(false));
 
     yield call(logout);
     // forwardTo('/')
@@ -124,7 +120,7 @@ export function * registerFlow () {
   while (true) {
     // We always listen to `REGISTER_REQUEST` actions
     const request = yield take(REGISTER_REQUEST);
-    const {username, password} = request.data;
+    const {username, password} = request.payload;
 
     // We call the `authorize` task with the data, telling it that we are registering a user
     // This returns `true` if the registering was successful, `false` if not
@@ -132,8 +128,8 @@ export function * registerFlow () {
 
     // If we could register a user, we send the appropiate actions
     if (wasSuccessful) {
-      yield put(action.setAuthState(true)); // User is logged in (authorized) after being registered
-      yield put(action.changeForm({username: '', password: ''})); // Clear form
+      yield put(authActions.setAuthState(true)); // User is logged in (authorized) after being registered
+      yield put(authActions.changeForm({username: '', password: ''})); // Clear form
       // forwardTo('/dashboard') // Go to dashboard page
       yield put(push('/i18n'))
     }

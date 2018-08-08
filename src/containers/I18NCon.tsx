@@ -9,7 +9,7 @@ import {
 } from 'react-intl';
 import {connect} from 'react-redux';
 import {Dispatch} from "redux";
-import * as actions from '../actions/localesAction';
+import {updateLocaleAction} from '../actions/localesAction';
 
 import {DatePicker, Pagination} from 'antd';
 import {ILocaleStore} from "../store/localeStore";
@@ -91,8 +91,8 @@ const App = ({intl, locale, changeLocale}: IProps) => (
 
 const mapStateToProps = ({locales: {locale}}: ILocaleStore) => ({locale});
 
-const mapDispatchToProps = (dispatch: Dispatch<actions.IUpdateLocales>) => ({
-  changeLocale: (locale: string) => dispatch(actions.updateLocales(locale))
+const mapDispatchToProps = (dispatch: Dispatch<any>): object => ({
+  changeLocale: (locale: string) => dispatch(updateLocaleAction(locale))
 });
 
 export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(App) as any);

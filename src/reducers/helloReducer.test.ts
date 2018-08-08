@@ -1,6 +1,6 @@
 import * as Actions from '../actions/helloAction';
 import { IHello } from "../store/helloStore";
-import { enthusiasm } from './helloReducer';
+import { helloReducer as enthusiasm } from './helloReducer';
 
 const Mock: IHello =  {
     enthusiasmLevel: 1,

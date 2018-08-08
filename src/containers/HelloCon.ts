@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import * as actions from '../actions/hiAction';
+import * as actions from '../actions/helloAction';
 import Hello from '../components/Hello';
+import { IHelloStore } from '../store/helloStore';
 
-export function mapStateToProps({ hi, auth }: any) {
+export function mapStateToProps({ hello }: IHelloStore) {
     return {
-        enthusiasmLevel: hi.enthusiasmLevel,
-        name: hi.languageName,
-        username: auth.formState.username
+        enthusiasmLevel: hello.enthusiasmLevel,
+        name: hello.languageName,
     }
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<actions.EnthusiasmAction>) {
+export function mapDispatchToProps(dispatch: Dispatch<any>): object {
     return {
         onDecrement: () => dispatch(actions.decrementEnthusiasm()),
         onIncrement: () => dispatch(actions.incrementEnthusiasm())

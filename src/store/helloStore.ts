@@ -8,6 +8,6 @@ export interface IHelloStore {
 }
 
 export const storeHello: IHello = {
-    enthusiasmLevel: 1,
-    languageName: 'TypeScript',
+  enthusiasmLevel: 1,
+  languageName: 'TypeScript',
 };

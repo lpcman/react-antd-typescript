@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
-import Hello from '../containers/Hello';
+import Hello from '../containers/HelloCon';
 import EmptyLayout from '../layout/empty/';
 import { Button } from 'antd';
 

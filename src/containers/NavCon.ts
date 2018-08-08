@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import * as actions from '../actions/authAction';
+import authActions from '../actions/authAction';
 import Nav from '../components/Nav';
 import {IAuthStore} from '../store/authStore';
 
@@ -12,8 +12,8 @@ export function mapStateToProps({auth}: IAuthStore) {
 
 export function mapDispatchToProps(dispatch: any) {
   return {
-    clearError: () => dispatch(actions.clearError()),
-    logout: () => dispatch(actions.logout())
+    clearError: () => dispatch(authActions.clearError()),
+    logout: () => dispatch(authActions.logout())
   }
 }
 
