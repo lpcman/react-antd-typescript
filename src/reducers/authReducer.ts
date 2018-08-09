@@ -10,6 +10,7 @@
 //   CLEAR_ERROR
 // } from '../constants/auth'
 import {handleActions} from "redux-actions";
+import produce from 'immer';
 import authActions from '../actions/authAction';
 import {IAuth, storeAuth} from "../store/authStore";
 // import hiActions from "../actions/hiAction";
@@ -33,18 +34,34 @@ import {IAuth, storeAuth} from "../store/authStore";
 //   }
 // }
 
+// const hiReducer = handleActions<IAuth, any>(
+//   {
+//     [authActions.changeForm as any]: (state, {payload}) => ({...state, formState: payload}),
+//     [authActions.setAuthState as any]: (state, {payload}) => ({...state, loggedIn: payload}),
+//     [authActions.sendingRequest as any]: (state, {payload}) => ({...state, currentlySending: payload}),
+//     [authActions.requestError as any]: (state, {payload}) => ({...state, error: payload}),
+//     [authActions.clearError as any]: (state) => ({...state, error: ''})
+//   },
+//   storeAuth
+// );
+
 const hiReducer = handleActions<IAuth, any>(
   {
-    [authActions.changeForm as any](state, {payload}) {
-      console.log(arguments); //tslint:disable-line
-      return {
-        ...state, formState: payload
-      }
-    },
-    [authActions.setAuthState as any]: (state, {payload}) => ({...state, loggedIn: payload}),
-    [authActions.sendingRequest as any]: (state, {payload}) => ({...state, currentlySending: payload}),
-    [authActions.requestError as any]: (state, {payload}) => ({...state, error: payload}),
-    [authActions.clearError as any]: (state) => ({...state, error: ''})
+    [authActions.changeForm as any]: produce<IAuth>((draft: IAuth, action: any) => {
+      draft.formState = action.payload;
+    }),
+    [authActions.setAuthState as any]: produce<IAuth>((draft: IAuth, action: any) => {
+      draft.loggedIn = action.payload;
+    }),
+    [authActions.sendingRequest as any]: produce<IAuth>((draft: IAuth, action: any) => {
+      draft.currentlySending = action.payload;
+    }),
+    [authActions.requestError as any]: produce<IAuth>((draft: IAuth, action: any) => {
+      draft.error = action.payload;
+    }),
+    [authActions.clearError as any]: produce<IAuth>((draft: IAuth, action: any) => {
+      draft.error = '';
+    })
   },
   storeAuth
 );
