@@ -87,7 +87,7 @@ export function * loginFlow () {
     if (winner.auth) {
       // ...we send Redux appropiate actions
       yield put(authActions.setAuthState(true)); // User is logged in (authorized)
-      yield put(authActions.changeForm({username: '', password: ''})); // Clear form
+      // yield put(authActions.changeForm({username: '', password: ''})); // Clear form
       // forwardTo('/dashboard') // Go to dashboard page
       yield put(push('/'))
     }

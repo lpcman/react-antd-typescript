@@ -2,12 +2,14 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import hiActions from '../actions/hiAction';
 import Hello from '../components/Hello';
+import {getGreeting} from "../selectors/authSelector";
 
 export function mapStateToProps({ hi, auth }: any) {
     return {
         enthusiasmLevel: hi.enthusiasmLevel,
         name: hi.languageName,
-        username: auth.formState.username
+        username: auth.formState.username,
+        greeting: getGreeting({auth} as any)
     }
 }
 
